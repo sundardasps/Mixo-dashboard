@@ -10,7 +10,10 @@ import { StatusBadge } from "@/src/components/shared/StatusBadge";
 import { CampaignDetailSkeleton } from "@/src/components/shared/skeletons/CampaignDetailSkeleton";
 import { CampaignSummarySkeleton } from "@/src/components/shared/skeletons/CampaignSummarySkeleton";
 
-import { useCampaignInsights, useCampaignInsightsStream } from "@/src/lib/hooks/useCampaignInsights";
+import {
+  useCampaignInsights,
+  useCampaignInsightsStream,
+} from "@/src/lib/hooks/useCampaignInsights";
 import { useCampaignById } from "@/src/lib/hooks/useCampaigns";
 
 import { platformIcons } from "@/src/components/shared/platformIcons";
@@ -33,8 +36,7 @@ export default function CampaignDetailPage() {
     isError: insightsError,
   } = useCampaignInsights(campaignId);
 
-  const { liveInsights, connected } =
-    useCampaignInsightsStream(campaignId);
+  const { liveInsights, connected } = useCampaignInsightsStream(campaignId);
 
   /* ---------------- Campaign Details (Secondary) ---------------- */
   const {
@@ -95,7 +97,7 @@ export default function CampaignDetailPage() {
   ];
 
   /* ---------------- Campaign Summary Section (Sonar-safe) ---------------- */
-  let campaignSummaryContent: JSX.Element | null = null;
+  let campaignSummaryContent: React.ReactNode = null;
 
   if (campaignDetailsLoading) {
     campaignSummaryContent = <CampaignSummarySkeleton />;
@@ -108,9 +110,7 @@ export default function CampaignDetailPage() {
       <div className="rounded-xl border p-4 space-y-3">
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-lg font-semibold">
-              {campaignData.name}
-            </h2>
+            <h2 className="text-lg font-semibold">{campaignData.name}</h2>
             <p className="text-sm text-muted-foreground">
               Campaign ID: {campaignData.id}
             </p>
