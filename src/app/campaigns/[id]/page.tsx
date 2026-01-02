@@ -23,7 +23,6 @@ import {
   formatNumber,
   formatPercentage,
 } from "@/src/lib/utils/format";
-import { JSX } from "@emotion/react/jsx-runtime";
 
 export default function CampaignDetailPage() {
   const params = useParams();
